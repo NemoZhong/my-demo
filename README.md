@@ -1,24 +1,10 @@
 # scf_cli4.0
 
-## Project setup
+## some-demos
 ```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
+1.vuedraggable
+2.some-components
+3.Xlsx -> table     table -> Xlsx
+4.formatted-input
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

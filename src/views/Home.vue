@@ -171,7 +171,7 @@ export default {
       );
     },
     onEnd(res) {
-      console.log("onEnd");
+      console.log("onEnd",res);
       this.currentItem = null;
     },
     onSort(res) {

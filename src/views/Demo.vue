@@ -13,6 +13,7 @@
       </InfoCard>
     </NormalCard>
     <NormalSteps :steps="steps"/>
+    <FormattedInput :formatter="(val)=>{return val+'.00'}" v-model="test"/>
   </div>
 </template>
 
@@ -25,9 +26,10 @@ import InputLine from "@/components/InputLine/";
 import NormalCard from "@/components/NormalCard/";
 import NormalTitle from "@/components/NormalTitle/";
 import NormalSteps from "@/components/NormalSteps/";
+import {FormattedInput} from "@/components/FormattedInput/index.js";
 export default {
   name: "Demo",
-  components: { InfoCard, InputLine, NormalCard, NormalTitle, NormalSteps },
+  components: { InfoCard, InputLine, NormalCard, NormalTitle, NormalSteps,FormattedInput },
   data() {
     const validate = (rule, value, callback) => {
       if (!/^[A-Za-z]/.test(value)) {
@@ -37,6 +39,7 @@ export default {
       }
     };
     return {
+      test:'',
       demo: {
         name: ""
       },
@@ -57,6 +60,21 @@ export default {
     };
   },
   methods: {
+  },
+  beforeCreate(){
+   console.log('beforeCreate',this)
+  },
+  created(){
+   console.log('created',this)
+  },
+  beforeMount(){
+   console.log('beforeMount',this)
+  },
+  mounted(){
+   console.log('updated',this)
+  },
+  updated(){
+    console.log('updated',this)
   }
 };
 </script>
