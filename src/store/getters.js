@@ -14,5 +14,5 @@ const getters = {
   addRoutes: state => state.permission.addRoutes,
   errorLogs: state => state.errorLog.logs,
   sortApi: state => state.sortApi
-}
-export default getters
+};
+export default getters;

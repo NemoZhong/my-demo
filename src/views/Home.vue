@@ -1,15 +1,22 @@
 <template>
   <div class="container">
-    <vuedraggable class="tools" :options="dragOption" @start="saveCurrentItem" @end="onEnd">
+    <vuedraggable
+      class="tools"
+      :options="dragOption"
+      @start="saveCurrentItem"
+      @end="onEnd"
+    >
       <transition-group>
         <div v-for="item in handleList" :key="item.id">
-          <div class="handle-item" :style="{'background-color':item.color}">{{item.name}}</div>
+          <div class="handle-item" :style="{ 'background-color': item.color }">
+            {{ item.name }}
+          </div>
         </div>
       </transition-group>
     </vuedraggable>
     <div class="flow-container">
       <div class="flow-row" v-for="flow in flowList" :key="flow.id">
-        <div class="flow-item">{{flow.name}}</div>
+        <div class="flow-item">{{ flow.name }}</div>
         <vuedraggable
           v-model="flow.column"
           :options="sortOption"
@@ -19,13 +26,13 @@
         >
           <div
             class="item"
-            v-for="(item,index) in flow.column"
-            @dblclick="editData($event,item)"
+            v-for="(item, index) in flow.column"
+            @dblclick="editData($event, item)"
             :key="index"
-            :style="{'background-color':item.color}"
+            :style="{ 'background-color': item.color }"
           >
-            {{item.name}}
-            <div class="del" @click.prevent="deleteFlow(flow,item)">×</div>
+            {{ item.name }}
+            <div class="del" @click.prevent="deleteFlow(flow, item)">×</div>
           </div>
         </vuedraggable>
       </div>
@@ -171,7 +178,7 @@ export default {
       );
     },
     onEnd(res) {
-      console.log("onEnd",res);
+      console.log("onEnd", res);
       this.currentItem = null;
     },
     onSort(res) {

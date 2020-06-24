@@ -1,6 +1,6 @@
 <template>
   <div class="info-card">
-    <div class="title">{{title}}</div>
+    <div class="title">{{ title }}</div>
     <slot name="info-data" />
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
 .info-card {
   box-sizing: border-box;
   width: 100%;
-  background-color: #F2EAF4;
+  background-color: #f2eaf4;
   text-align: left;
   border-radius: 4px;
   padding: 16px 20px;

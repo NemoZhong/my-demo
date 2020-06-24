@@ -9,7 +9,7 @@
       :on-exceed="exceed"
       :limit="1"
       :on-remove="remove"
-      :http-request="()=>{}"
+      :http-request="() => {}"
       :before-upload="uploadFile"
     >
       <i class="el-icon-upload"></i>
@@ -17,14 +17,40 @@
         将文件拖到此处，或
         <em>点击上传</em>
       </div>
-      <div class="el-upload__tip" slot="tip">1次只能上传1个xls文件，且不超过500kb</div>
+      <div class="el-upload__tip" slot="tip">
+        1次只能上传1个xls文件，且不超过500kb
+      </div>
     </el-upload>
-    <el-button type="primary" class="export-btn" @click="exportTable">导出</el-button>
+    <el-button type="primary" class="export-btn" @click="exportTable"
+      >导出</el-button
+    >
     <div class="preview-excel">
-      <el-table id="table" class="listTable_ele" :data="listTable" stripe border style="width:100%">
-        <el-table-column prop="name" label="姓名" width="200" align="center"></el-table-column>
-        <el-table-column prop="age" label="年龄" width="200" align="center"></el-table-column>
-        <el-table-column prop="grade" label="成绩" width="200" align="center"></el-table-column>
+      <el-table
+        id="table"
+        class="listTable_ele"
+        :data="listTable"
+        stripe
+        border
+        style="width:100%"
+      >
+        <el-table-column
+          prop="name"
+          label="姓名"
+          width="200"
+          align="center"
+        ></el-table-column>
+        <el-table-column
+          prop="age"
+          label="年龄"
+          width="200"
+          align="center"
+        ></el-table-column>
+        <el-table-column
+          prop="grade"
+          label="成绩"
+          width="200"
+          align="center"
+        ></el-table-column>
       </el-table>
     </div>
   </div>
@@ -48,7 +74,7 @@ export default {
           const workbook = XLSX.read(data, {
             type: "binary"
           });
-          for (let sheet in workbook.Sheets) {
+          for (const sheet in workbook.Sheets) {
             //循环读取每个文件
             const sheetArray = XLSX.utils.sheet_to_json(workbook.Sheets[sheet]);
             //若当前sheet没有数据，则continue
@@ -57,13 +83,13 @@ export default {
             }
             console.log("读取文件");
             console.log(sheetArray);
-            for (let item in sheetArray) {
-              let rowTable = {};
+            for (const item in sheetArray) {
+              const rowTable = {};
               //这里的rowTable的属性名注意要与上面表格的prop一致
               //sheetArray的属性名与上传的表格的列名一致
-              rowTable.name = sheetArray[item]['姓名'];
-              rowTable.age = sheetArray[item]['年龄'];
-              rowTable.grade = sheetArray[item]['成绩'];
+              rowTable.name = sheetArray[item]["姓名"];
+              rowTable.age = sheetArray[item]["年龄"];
+              rowTable.grade = sheetArray[item]["成绩"];
               this.listTable.push(rowTable);
             }
           }
@@ -82,9 +108,9 @@ export default {
       this.listTable = [];
     },
     exportTable() {
-      let wb = XLSX.utils.table_to_book(document.querySelector("#table"));
+      const wb = XLSX.utils.table_to_book(document.querySelector("#table"));
       /* #table 就是表格的id */
-      let wbout = XLSX.write(wb, {
+      const wbout = XLSX.write(wb, {
         bookType: "xlsx",
         bookSST: true,
         type: "array"
@@ -108,8 +134,8 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-around;
-  .export-btn{
-      height: 40px;
+  .export-btn {
+    height: 40px;
   }
 }
 </style>

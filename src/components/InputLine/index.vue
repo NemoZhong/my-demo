@@ -1,7 +1,7 @@
 <template>
   <div class="input-container">
     <el-input
-      :class="['input-line',isValidated?'':'error']"
+      :class="['input-line', isValidated ? '' : 'error']"
       :type="inputType"
       v-model="currentValue"
       :name="name"
@@ -72,12 +72,15 @@ export default {
   },
   methods: {
     blurFn() {
-      this.$parent.form.validate().then(()=>{
-        this.isValidated = true;
-      },err=>{
-        this.isValidated = false;
-      })
-      this.$emit('blur', event)
+      this.$parent.form.validate().then(
+        () => {
+          this.isValidated = true;
+        },
+        err => {
+          this.isValidated = false;
+        }
+      );
+      this.$emit("blur", event);
       if (this.$parent.$options.componentName === "ElFormItem") {
         if (this.validateEvent) {
           this.$parent.$emit("el.form.blur", [this.currentValue]);
