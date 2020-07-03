@@ -173,6 +173,15 @@ export default {
       ]
     };
   },
+  async mounted(){
+    this.$loading.show()
+    await new Promise(resolve=>{
+      setTimeout(()=>{
+        resolve()
+      },1000)
+    })
+     this.$loading.hide()
+  },
   methods: {}
 };
 </script>
