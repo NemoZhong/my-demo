@@ -7,6 +7,8 @@ import ElementUI from "element-ui";
 import "element-ui/lib/theme-chalk/index.css";
 
 Vue.use(ElementUI);
+import Loading from "@/components/globalLoading/index";
+Vue.use(Loading);
 Vue.config.productionTip = false;
 
 new Vue({
