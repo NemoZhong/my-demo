@@ -25,7 +25,7 @@ export default {
         background-color: rgba(0, 0, 0, 0.2);
         .loading{
           position: absolute;
-          left: 50%;
+          left: calc(50% + 50px);
           top: 50%;
           transform: translate(-50%,-50%);
           span{
