@@ -79,9 +79,9 @@ module.exports = {
     config.plugins.delete("preload-index"); // TODO: need test
     config.plugins.delete("prefetch"); // TODO: need test
 
-    // less变量全局使用
-    const types=['vue-modules','vue','normal-modules','normal']
-    types.forEach(type=>addStyleResource(config.module.rule('less').oneOf(type)))
+    // less变量全局使用 需要安装style-resources-loader
+    // const types=['vue-modules','vue','normal-modules','normal']
+    // types.forEach(type=>addStyleResource(config.module.rule('less').oneOf(type)))
     // set svg-sprite-loader
     config.module
       .rule("svg")
