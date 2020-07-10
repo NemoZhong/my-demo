@@ -1,4 +1,3 @@
-"use strict";
 const path = require("path");
 const pkg = require("./package.json");
 
@@ -15,6 +14,15 @@ const name = pkg.name || "特色产业金融服务平台"; // page title
 // port = 9527 npm run dev OR npm run dev --port = 9527
 const port = process.env.port || process.env.npm_config_port || 9527; // dev port
 
+function addStyleResource(rule){
+  rule.use('style-resource')
+  .loader('style-resources-loader')
+  .options({
+    patterns:[
+      path.resolve(__dirname,'./src/styles/base.less')
+    ]
+  })
+}
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
   /**
@@ -35,19 +43,17 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
-    }
-    // proxy: {
-    //   // change xxx-api/login => mock/login
-    //   // detail: https://cli.vuejs.org/config/#devserver-proxy
-    //   [process.env.VUE_APP_BASE_API]: {
-    //     target: `http://127.0.0.1:${port}/mock`,
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       ['^' + process.env.VUE_APP_BASE_API]: ''
-    //     }
-    //   }
-    // },
-    // after: require('./mock/mock-server.js')
+    },
+    proxy: {
+      '/api/busiess': {
+        target: `http://127.0.0.1:8080`,
+        changeOrigin: true,
+        ws:true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    },
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
@@ -55,16 +61,27 @@ module.exports = {
     name: name,
     resolve: {
       // modules: [path.resolve('node_modules')], // 对于需要引入的模块去node_modules下找
-      // extensions: ['.js', '.css', '.json', '.vue', '.ts'], // 配置扩展名，使用场景如下
+      extensions: ['.js', '.css', '.json', '.vue', '.ts'], // 配置扩展名，使用场景如下
       alias: {
         "@": resolve("src")
       }
-    }
+    },
+    // plugins:[new CompressionWebpackPlugin({
+    //   filename:'[path].gz[query]',
+    //   algorithm:'gzip',
+    //   test:new RegExp('\\.('+['js','css'].join('|')+')$'),
+    //   threshold:102,
+    //   minRatio:0.8,
+    //   deleteOriginalAssets:false
+    // })]
   },
   chainWebpack(config) {
     config.plugins.delete("preload-index"); // TODO: need test
     config.plugins.delete("prefetch"); // TODO: need test
 
+    // less变量全局使用
+    const types=['vue-modules','vue','normal-modules','normal']
+    types.forEach(type=>addStyleResource(config.module.rule('less').oneOf(type)))
     // set svg-sprite-loader
     config.module
       .rule("svg")
