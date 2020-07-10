@@ -194,7 +194,30 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      timeTmpData:{},
+      multipleSelection:[],
+      formData:{},
+      tableData:[],
+      total:0,
+      current:1,
+      size:10,
+      loading:true,
+      globalSearchTxt:'',
+      // 当前列 (用于渲染搜索行的Input)
+      currentColumns:[],
+      // 全部列 (用于列菜单显示，并绑定拖拽)
+      allColumns:[],
+      // 初始全部列(用于重置)
+      originColumns:[],
+      isIndeterminate:false,
+      checkedColumns:[],
+      searchHistoryList:[],
+      orders:[]
+    };
+  },
+  watch:{
+
   },
   methods: {
     headerSearch(){
