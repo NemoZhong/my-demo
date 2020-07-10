@@ -2,25 +2,12 @@
   <div class="input-container">
     <el-input
       :class="['input-line', isValidated ? '' : 'error']"
-      :type="inputType"
       v-model="currentValue"
-      :name="name"
-      :placeholder="placeholder"
-      :prefix-icon="preIcon"
-      :suffix-icon="sufIcon"
+      v-bind="$attrs"
+      v-on="$listeners"
       @blur="blurFn"
       @input.native="handleModelInput"
     ></el-input>
-    <!-- <input
-      v-if="inputType === 'select'"
-      v-model="currentValue"
-      :name="name"
-      :placeholder="placeholder"
-      :prefix-icon="preIcon"
-      :suffix-icon="sufIcon"
-      @blur="blurFn"
-      @input.native="handleModelInput"
-    /> -->
   </div>
 </template>
 
@@ -29,31 +16,6 @@ export default {
   name: "InputLine",
   props: {
     value: [String, Number],
-    label: {
-      type: String,
-      default: ""
-    },
-    name: String,
-    placeholder: {
-      type: String,
-      default: "请输入"
-    },
-    preIcon: {
-      tyoe: String,
-      default: ""
-    },
-    sufIcon: {
-      tyoe: String,
-      default: ""
-    },
-    inputType: {
-      type: String,
-      default: "text"
-    },
-    rules: {
-      type: RegExp,
-      default() {}
-    },
     validateEvent: {
       type: Boolean,
       default: true
@@ -72,14 +34,6 @@ export default {
   },
   methods: {
     blurFn() {
-      this.$parent.form.validate().then(
-        () => {
-          this.isValidated = true;
-        },
-        err => {
-          this.isValidated = false;
-        }
-      );
       this.$emit("blur", event);
       if (this.$parent.$options.componentName === "ElFormItem") {
         if (this.validateEvent) {
