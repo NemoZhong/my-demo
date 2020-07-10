@@ -14,14 +14,8 @@ export function WithFormatter(InnerComponent) {
           return value;
         }
       },
-      inputStyle: {
-        type: Object,
-        default() {}
-      },
-      displayStyle: {
-        type: Object,
-        default() {}
-      }
+      inputStyle: Object,
+      displayStyle: Object,
     },
     computed: {
       computedValue() {
