@@ -482,5 +482,23 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
+    .search-line-table{
+      /deep/ .el-table__body-wrapper{
+        padding-top: 40px;
+        .el-table__append-wrapper{
+          position: absolute;
+          top: 0;
+          width: 100%;
+          border-bottom: 1px solid #ebeef5;
+        }
+        input{
+          box-sizing: border-box;
+          outline: none;
+          border:none;
+          height: 30px;
+          text-indent: 16px;
+          padding-right: 6px;
+        }
+      }
+    }
 </style>
