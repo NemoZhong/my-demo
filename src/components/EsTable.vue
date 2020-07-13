@@ -404,7 +404,7 @@ export default {
       this.size=size
       this.loadData()
     },
-    handlePageChange(){
+    handlePageChange(current){
       this.current=current
       this.loadData(false)
     },
@@ -455,9 +455,9 @@ export default {
         }
       }
       try{
-        const res = await setTimeout(()=>{},1000)
+        const res = await setTimeout(()=>{return {}},1000)
         if(res && res.success){
-          const {data}=res
+          let {data}=res
           if(this.usePage){
             data=data||{}
             this.tableData=this.dataTransfer(data.records)||data.records||[]
