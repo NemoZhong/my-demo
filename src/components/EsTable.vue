@@ -111,7 +111,7 @@
 <script>
 import InputLine from '@/components/InputLine/'
 import VueDraggable from 'vuedraggable'
-import service from "@/utils/request"
+// import service from "@/utils/request"
 import qs from 'qs'
 import moment from 'moment'
 import _ from 'lodash'
@@ -217,19 +217,19 @@ export default {
     };
   },
   computed: {
-    isCountUnit:(this)=>(unit)=>{
+    isCountUnit:(that)=>(unit)=>{
       if(unit.prop){
-        return this.countRangeSearch.find(item=>item.prop===unit.prop)
+        return that.countRangeSearch.find(item=>item.prop===unit.prop)
       }
     },
-    isSelectUnit:(this)=>(unit)=>{
+    isSelectUnit:(that)=>(unit)=>{
       if(unit.prop){
-        return this.selectSearch.find(item=>item.prop===unit.prop)
+        return that.selectSearch.find(item=>item.prop===unit.prop)
       }
     },
-    isTimeUnit:(this)=>(unit)=>{
+    isTimeUnit:(that)=>(unit)=>{
       if(unit.prop){
-        return this.timeRange.find(item=>item.prop===unit.prop)
+        return that.timeRange.find(item=>item.prop===unit.prop)
       }
     },
     canRowClick(){
