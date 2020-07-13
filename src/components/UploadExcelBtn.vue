@@ -11,13 +11,14 @@
         :file-list="fileList"
         >
         <slot name='button'>
-            <table-button :icon="icon" :tip="tip"></table-button>
+            <el-button :icon="icon" :tip="tip"></el-button>
         </slot>
       </el-upload>
   </span>
 </template>
 
 <script>
+import XLSX from 'xlsx'
 export default {
   name: "UploadExcelBtn",
   props: {
@@ -90,8 +91,8 @@ export default {
                     if(!this.autoUpload){
                         this.$message.success('Excel识别成功')
                         this.$emit('readExcelSuccess',{
-                            list:excelResultData,
-                            index:dataIndex
+                            list:this.excelResultData,
+                            index:this.dataIndex
                         })
                     }
                 }
