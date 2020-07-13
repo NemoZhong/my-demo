@@ -359,7 +359,7 @@ export default {
       }
       this.loadData()
     },
-    headerSearch:_.debance(function(){
+    headerSearch:_.debounce(function(){
       this.searchHistoryList.unshift(this.globalSearchTxt)
       this.searchHistoryList=[...new Set(this.searchHistoryList)].slice(0,5)
       localStorage.setItem('searchHistoryList',JSON.stringify(this.searchHistoryList))
